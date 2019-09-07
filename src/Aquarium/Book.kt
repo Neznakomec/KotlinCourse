@@ -22,4 +22,19 @@ fun main(args: Array<String>) {
     println("Here is your book ${bookTitleAuthorYear.first} " +
             "by ${bookTitleAuthorYear.second} written in ${bookTitleAuthorYear.third}")
 
+    /*val allBooks = setOf(book)
+    val library = mapOf(book.author to allBooks)
+    println(library.any { it.key.equals("Hamlet") })
+    val moreBooks = mutableMapOf(book.title to book)*/
+
+    val allBooks = setOf("Macbeth", "Romeo and Juliet", "Hamlet", "A Midsummer Night's Dream")
+    val library = mapOf("Shakespeare" to allBooks)
+    println(library.any { it.value.contains("Hamlet") })
+
+    val moreBooks = mutableMapOf<String, String>("Wilhelm Tell" to "Schiller")
+    moreBooks.getOrPut("Jungle Book") { "Kipling" }
+    moreBooks.getOrPut("Hamlet") { "Shakespeare" }
+    println(moreBooks)
+
+
 }
