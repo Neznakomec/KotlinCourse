@@ -1,20 +1,27 @@
 package Aquarium.generics
 
-open class BaseBuildingMaterial(val numberNeeded: Int = 1)
-class Wood : BaseBuildingMaterial(4)
-class Brick : BaseBuildingMaterial(8)
+open class BaseBuildingMaterial() {
+    open val numberNeeded = 1
+}
 
-class Building<T : BaseBuildingMaterial>(val material: T) {
+class Wood : BaseBuildingMaterial() {
+    override val numberNeeded = 4
+}
+
+class Brick : BaseBuildingMaterial() {
+    override val numberNeeded = 8
+}
+
+class Building<T: BaseBuildingMaterial>(val buildingMaterial: T) {
+
     val baseMaterialsNeeded = 100
-    val actualMaterialsNeeded = baseMaterialsNeeded * material.numberNeeded
+    val actualMaterialsNeeded = buildingMaterial.numberNeeded * baseMaterialsNeeded
 
     fun build() {
-        println("We need ${material::class.simpleName} in amount of $actualMaterialsNeeded")
+        println(" $actualMaterialsNeeded ${buildingMaterial::class.simpleName} required")
     }
-
 }
 
 fun main(args: Array<String>) {
-    val building = Building(Wood())
-    building.build()
+    Building(Wood()).build()
 }
