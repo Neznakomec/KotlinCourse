@@ -1,6 +1,6 @@
 package Spice
 
-abstract class Spice(val name: String, val spiciness: String = "mild", color: SpiceColor) : SpiceColor by color {
+sealed class Spice(val name: String, val spiciness: String = "mild", color: SpiceColor) : SpiceColor by color {
     abstract fun prepareSpice()
 }
 class Curry(name: String, spiciness: String,
@@ -18,9 +18,9 @@ interface Grinder {
 }
 
 interface SpiceColor {
-    val color: String
+    val color: Color
 }
 
 object YellowSpiceColor : SpiceColor {
-    override val color = "Yellow"
+    override val color = Color.YELLOW
 }

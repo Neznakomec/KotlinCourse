@@ -1,13 +1,17 @@
 package Spice
 
-import Aquarium.Decorations.makeDecorations
-
 fun main(args: Array<String>) {
-    spices()
+    spiceTest()
 }
 
-fun spices() {
-    val sc1: SpiceContainer = SpiceContainer(Curry("curry", "mild"))
-    print(sc1.label)
+data class SpiceContainer(var spice: Spice) {
+    val label = spice.name
 }
-data class SpiceContainer (val spice: Spice, val label: String = spice.name)
+
+fun spiceTest() {
+    val spiceCabinet = listOf(SpiceContainer(Curry("Yellow Curry", "mild")),
+        SpiceContainer(Curry("Red Curry", "medium")),
+        SpiceContainer(Curry("Green Curry", "spicy")))
+
+    for(element in spiceCabinet) println(element.label)
+}
