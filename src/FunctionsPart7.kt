@@ -1,6 +1,6 @@
 /*import java.util.*
 
-fun main(args: Array<String>) {
+fun Aquarium.main(args: Array<String>) {
     println("\nYour fortune is: ${getFortune()}")
 }
 
