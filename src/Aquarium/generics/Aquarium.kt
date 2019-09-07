@@ -28,9 +28,9 @@ class Aquarium<out T: WaterSupply>(val waterSupply: T) {
 
         println("add water from $waterSupply")
     }
-
-    inline fun <reified R: WaterSupply> hasWaterSupplyOfType() = waterSupply is R
 }
+
+inline fun <reified R: WaterSupply> Aquarium<*>.hasWaterSupplyOfType() = waterSupply is R
 
 interface Cleaner<in T: WaterSupply> {
     fun clean(waterSupply: T)
