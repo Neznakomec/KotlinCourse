@@ -11,15 +11,31 @@ class Game {
     val east = { path.add(Direction.EAST) }
     val west = { path.add(Direction.WEST) }
     val end = { path.add(Direction.END); println("Game Over: $path"); path.clear(); false }
+
+    fun makeMove(str: String?) {
+        val dir = Direction.values().find { dir -> dir.name.equals(str) }
+        when (dir) {
+            Direction.NORTH -> move { north }
+            Direction.SOUTH -> move { south }
+            Direction.EAST -> move { east }
+            Direction.WEST -> move { west }
+            else -> move { end }
+        }
+
+    }
+
+    fun move(where: () -> Unit ) {
+        where.invoke()
+    }
+
 }
 
 fun main(args: Array<String>) {
     val game = Game()
     println(game.path)
-    game.north()
-    game.south()
-    game.east()
-    game.west()
-    game.end()
+    while (true) {
+        print("Enter a direction: n/s/e/w:")
+        game.makeMove(readLine())
+    }
     println(game.path)
 }
