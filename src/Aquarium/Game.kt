@@ -1,29 +1,25 @@
 package Aquarium
 
-enum class Directions {NORTH, SOUTH, EAST, WEST, START, END}
-
-class Game {
-    var path = mutableListOf<Directions>(Directions.START)
-
-    var north = { path.add(Directions.NORTH) }
-    var south = { path.add(Directions.SOUTH) }
-    var east = { path.add(Directions.EAST) }
-    val west = { path.add(Directions.WEST) }
-
-    val end = {
-        path.add(Directions.END)
-        println("Game over: $path")
-        path.clear()
-        false
-    }
+enum class Direction {
+    NORTH, EAST, WEST, SOUTH, START, END
 }
 
-fun main (args: Array<String>) {
-    val game: Game = Game()
+class Game {
+    var path = mutableListOf<Direction>(Direction.START)
+    val north = { path.add(Direction.NORTH) }
+    val south = { path.add(Direction.SOUTH) }
+    val east = { path.add(Direction.EAST) }
+    val west = { path.add(Direction.WEST) }
+    val end = { path.add(Direction.END); println("Game Over: $path"); path.clear(); false }
+}
+
+fun main(args: Array<String>) {
+    val game = Game()
     println(game.path)
     game.north()
     game.south()
     game.east()
     game.west()
     game.end()
+    println(game.path)
 }
